@@ -32,7 +32,6 @@ function Game() {
   };
   const submitGuess = (guess, formEvent) => {
     if (attempts.length >= NUM_OF_GUESSES_ALLOWED || guess.length < 5) {
-      console.log("You shall not pass !", formEvent);
       return;
     }
 
