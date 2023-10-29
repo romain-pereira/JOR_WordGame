@@ -6,6 +6,7 @@ import GuessInput from "../GuessInput";
 import {checkGuess} from "../../game-helpers";
 import GuessTable from "../GuessLine";
 import {NUM_OF_GUESSES_ALLOWED} from "../../constants";
+import EndGameBanner from "../EndGameBanner";
 
 // Pick a random word on every pageload.
 let answer = sample(WORDS);
@@ -81,23 +82,11 @@ function Game() {
         maxGuess={NUM_OF_GUESSES_ALLOWED}
         wordSize={5}
       />
-
-      {isWin && (
-        <div className="happy banner">
-          <p>
-            <strong>Congratulations!</strong> Got it in
-            <strong> {attempts.length} guesses</strong>.
-          </p>
-        </div>
-      )}
-
-      {attempts.length === NUM_OF_GUESSES_ALLOWED && (
-        <div className="sad banner">
-          <p>
-            Sorry, the correct answer is <strong>{answer}</strong>.
-          </p>
-        </div>
-      )}
+      <EndGameBanner
+        isWin={isWin}
+        attemptsCount={attempts.length}
+        answer={answer}
+      />
       <GuessInput
         guess={guess}
         setGuess={setGuess}
